@@ -1,4 +1,4 @@
-import { FacebookOutlined, HeartFilled, LikeOutlined, ShareAltOutlined } from "@ant-design/icons"
+import { FacebookOutlined, HeartFilled, LikeOutlined } from "@ant-design/icons"
 import { AddToCardProducts, ButtonProducts, BuyNowProducts, ContentProducts, ImageProduct, ImageProductContainer, InfoProductsLeft, InfoRightProductContainer, ItemContentProduct, ItemProducts, LikeAndShareProductsContaier, LikeProducts, PriceProduct, ShareProducts, TitleProducts } from "./styled"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,9 +9,14 @@ import ModalComponent from "../../../../components/Modal";
 type ITypeDefaultImage = {
 
     id?: number;
-    image?: string;
+    name?: string;
 }
-export const InfoProducts = () => {
+
+type ITypeDescProducts = {
+
+    content: string
+}
+export const InfoProducts = (props : any) => {
 
     const {slug} = useParams();
 
@@ -19,19 +24,19 @@ export const InfoProducts = () => {
     const [listImage, setListImage] = useState([
         {
             id: 0,
-            image: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
+            name: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
         },
         {
             id: 1,
-            image: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
+            name: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
         },
         {
             id: 2,
-            image: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
+            name: "https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg"
         },
         {
             id: 3,
-            image: "https://i.pinimg.com/736x/56/86/03/568603cbd1860c67bf8f6776cbe7f885.jpg"
+            name: "https://i.pinimg.com/736x/56/86/03/568603cbd1860c67bf8f6776cbe7f885.jpg"
         },
     ]);
 
@@ -40,18 +45,16 @@ export const InfoProducts = () => {
     const [dataProductDetail, setDataProductDetail] = useState<TypeFormProducts>();
     const [defaultImage, setDefaultImage] = useState<ITypeDefaultImage>();
     const [changeColorHeart, setChangeColorHeart] = useState("white")
-    const [openModal, setOpenModal] = useState(false);
-            console.log("openModalopenModal", openModal);
+    const [openModal, setOpenModal] = useState(false);    
             
     const onClickImage = (image: ITypeDefaultImage) => {
-        console.log(image);
-
         setDefaultImage(image);
     }
 
     const getProductDetail = async (slug : string | undefined) => {
-        const productDetail =  await getApiProductsDetail(slug);
+        const productDetail: TypeFormProducts =  await getApiProductsDetail(slug);
         setDataProductDetail(productDetail);
+        props.setDescProducts(productDetail.content)
     }
 
     const likeProducts = async (id: number | undefined) => {
@@ -73,12 +76,15 @@ export const InfoProducts = () => {
         <ImageProductContainer>
             <InfoProductsLeft>
                 <div>
-                    <ImageProduct src={defaultImage ? defaultImage.image : dataProductDetail?.image} alt="" />
+                    <ImageProduct src={defaultImage ? defaultImage.name : dataProductDetail?.image} alt="" />
                 </div>
                 <ItemProducts>
-                    {listImage.map((item, index) => (
-                        <img src={item.image} alt="" key={index} onClick={() => onClickImage(item)} />
+                    {dataProductDetail?.itemImage &&  dataProductDetail?.itemImage.length > 0 ? dataProductDetail?.itemImage.map((item, index) => (
+                          <img src={item.name} alt="" key={index} onClick={() => onClickImage(item)} />
+                    )) :   listImage.map((item, index) => (
+                        <img src={item.name} alt="" key={index} onClick={() => onClickImage(item)} />
                     ))}
+                  
                 </ItemProducts>
             </InfoProductsLeft>
 
@@ -104,7 +110,7 @@ export const InfoProducts = () => {
                         <span>In Stock</span>
                     </ItemContentProduct>
                 </ContentProducts>
-                <PriceProduct title={dataProductDetail && dataProductDetail?.sales > 0 ? "true" : "false"}>{formatCurrency(dataProductDetail?.price)}</PriceProduct>
+                {dataProductDetail?.sales === 0 ? null : <PriceProduct title={dataProductDetail && dataProductDetail?.sales > 0 ? "true" : "false"}>{formatCurrency(dataProductDetail?.price)}</PriceProduct>}
                 <PriceProduct title = {"false"}>{formatCurrency((dataProductDetail && (dataProductDetail?.price - (dataProductDetail?.sales / 100 * dataProductDetail?.price))) )}</PriceProduct>
                 <ButtonProducts>
                     <BuyNowProducts onClick={() => buyNow(true)}>Buy now</BuyNowProducts>

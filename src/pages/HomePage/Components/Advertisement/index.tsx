@@ -14,7 +14,7 @@ export const Advertisement = () => {
 
         try {
             const listData = await getApiAdver()
-            setListAdver(listData);
+            setListAdver(listData.data);
         } catch (error) {
             console.log("error", error);
 

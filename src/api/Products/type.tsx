@@ -6,12 +6,24 @@ export interface TypeFormProducts {
     sales: number,
     priceToPay: number;
     image: string,
+    itemImage?: ITypeItemImage[],
+    image1?: string,
+    image2?: string,
+    image3?: string,
+    image4?: string,
     slug: string,
     like: number
     brand: string,
     point: number,
     sold: boolean,
-    categoryProductsId?: object
+    categoryProductsId?: object,
+    content: string
+}
+
+export interface ITypeItemImage {
+
+    id?: number,
+    name?: string
 }
 
 export interface TypeIdProduct {

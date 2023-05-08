@@ -3,6 +3,7 @@ import { Form, Input, Select, message } from 'antd';
 import { Button, Drawer, Space } from 'antd';
 import { TypeFormProducts } from '../../../../../api/Products/type';
 import { TypeFormCategoryProducts } from '../../../../../api/CategoryProducts/type';
+import ReactQuill from 'react-quill';
 
 const DrawerRight: React.FC<any> = (props) => {
 
@@ -65,12 +66,32 @@ const DrawerRight: React.FC<any> = (props) => {
                             value: props.valueProducts?.image,
                         },
                         {
+                            name: ["image1"],
+                            value: props?.valueProducts?.itemImage[0]?.name,
+                        },
+                        {
+                            name: ["image2"],
+                            value: props?.valueProducts?.itemImage[1]?.name,
+                        },
+                        {
+                            name: ["image3"],
+                            value: props.valueProducts?.itemImage[2]?.name,
+                        },
+                        {
+                            name: ["image4"],
+                            value: props.valueProducts?.itemImage[3]?.name,
+                        },
+                        {
                             name: ["brand"],
                             value: props.valueProducts?.brand,
                         },
                         {
                             name: ["categoryProductsId"],
                             value: props.valueProducts?.categoryProductsId?.id,
+                        },
+                        {
+                            name: ["content"],
+                            value: props.valueProducts?.content,
                         },
                     ]}
                 >
@@ -100,7 +121,37 @@ const DrawerRight: React.FC<any> = (props) => {
                         label="Image"
                         rules={[{ required: true }, { type: 'string' }]}
                     >
-                        <Input placeholder="input placeholder" />
+                        <Input placeholder="default image" />
+                    </Form.Item>
+                    <Form.Item
+                        name="image1"
+                        rules={[{ required: false }]}
+                    >
+                        <Input placeholder="item image 1" />
+                    </Form.Item>
+                    <Form.Item
+                        name="image2"
+                        rules={[{ required: false }]}
+                    >
+                        <Input placeholder="item image 2" />
+                    </Form.Item>
+                    <Form.Item
+                        name="image3"
+                        rules={[{ required: false }]}
+                    >
+                        <Input placeholder="item image 3" />
+                    </Form.Item>
+                    <Form.Item
+                        name="image4"
+                        rules={[{ required: false }]}
+                    >
+                        <Input placeholder="item image 4" />
+                    </Form.Item>
+                    <Form.Item
+                        name="content"
+                        label="Content"
+                    >
+                        <ReactQuill theme="snow" />
                     </Form.Item>
                     <Form.Item
                         name="brand"

@@ -2,13 +2,19 @@ import styled from "styled-components"
 import { InfoProducts } from "./Components/InfoProduct"
 import { DescProduct } from "./Components/DescProduct"
 import { RelatedProjects } from "../../components/RelateProducts"
+import { useParams } from "react-router-dom"
+import { useState } from "react"
 
 export const ProductDetail = () => {
 
+    const [descProducts, setDescProducts] = useState();
+    console.log("descProducts", descProducts);
+    
+
     return (
         <WrapperPageProduct>
-            <InfoProducts />
-            <DescProduct />
+            <InfoProducts setDescProducts = {setDescProducts}/>
+            <DescProduct descProducts = {descProducts}/>
             <RelatedProjects />
         </WrapperPageProduct>
     )

@@ -12,6 +12,7 @@ import { getApiAdver } from "../../../api/Adver/api"
 export const AdverAdmin = () => {
 
     const [dataAdver, setDataAdver] = useState<TypeFormCategoryProducts>();
+    
     const [action, setAction] = useState<boolean>(true);
     const [drawer, setDrawer] = useState<boolean>(false);
     const [id, setId] = useState<number | undefined>();

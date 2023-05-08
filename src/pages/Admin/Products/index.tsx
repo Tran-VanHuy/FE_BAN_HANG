@@ -32,7 +32,10 @@ export const ProductsAdmin = () => {
     }
 
     const createData = async (formData: TypeFormProducts) => {
-        const formatData = {...formData, categoryProductsId: {id: formData?.categoryProductsId, name: null}}             
+        const itemImage = [{name: formData.image1}, {name: formData.image2}, {name: formData.image3}, {name: formData.image4}]
+        const formatData: TypeFormProducts = {...formData, categoryProductsId: {id: formData?.categoryProductsId, name: null}, like: 0, itemImage}  
+        console.log("formDataformData", formData);
+        
         if(action === true){
             const res = await createApiProducts(formatData)
             if(res){
@@ -47,11 +50,13 @@ export const ProductsAdmin = () => {
                     sales: 0,
                     image: "",
                     slug: "string",
+                    itemImage: [],
                     like: 0,
                     brand: "",
                     sold: false,
                     priceToPay: 0,
-                    point: 0
+                    point: 0,
+                    content: ""
                     });
                 getDataProducts()
             }

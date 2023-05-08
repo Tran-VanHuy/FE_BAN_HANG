@@ -1,13 +1,18 @@
 import { ContentDescProducts, DescProductContainer, TitleDescContainer } from "./styled"
+import parserHtml from "react-html-parser"
 
-export const DescProduct = () => {
+export const DescProduct = (props: any) => {
 
     return (
         <DescProductContainer>
-            <TitleDescContainer>Description</TitleDescContainer>
+            {props?.descProducts ? 
+            <>
+             <TitleDescContainer>Description</TitleDescContainer>
             <ContentDescProducts>
-                aaaaaaaa
+                {parserHtml(props.descProducts)}
             </ContentDescProducts>
+            </> : null}
+           
         </DescProductContainer>
     )
 }
