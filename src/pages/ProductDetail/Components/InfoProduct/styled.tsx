@@ -39,8 +39,8 @@ export const TitleProducts = styled.div`
 
 export const ContentProducts = styled.div`
     
-    border-bottom: 1px solid gray;
-    border-top: 1px solid gray;
+    border-bottom: 2px solid #DCDCDC;
+    border-top: 2px solid #DCDCDC;
     padding: 30px 0px;
     margin-bottom: 10px;
 
@@ -60,7 +60,7 @@ export const PriceProduct =  styled.strong`
     margin-bottom: 20px;
     padding-right: 30px;
     text-decoration-line: ${(props: any) => props.title === "true" ? "line-through" : null };
-    color: ${(props: any) => props.title === "true" ? "gray" : null };
+    color: ${(props: any) => props.title === "true" ? "#696969	" : null };
 `
 
 export const ButtonProducts = styled.div`
@@ -76,7 +76,7 @@ export const ButtonProducts = styled.div`
         cursor: pointer;
     }
 
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid #DCDCDC;
 `
 export const BuyNowProducts = styled.button`
     

@@ -7,14 +7,13 @@ import { useState } from "react"
 
 export const ProductDetail = () => {
 
-    const [descProducts, setDescProducts] = useState();
-    console.log("descProducts", descProducts);
+    const [descProducts, setDescProducts] = useState<string>();
     
 
     return (
         <WrapperPageProduct>
             <InfoProducts setDescProducts = {setDescProducts}/>
-            <DescProduct descProducts = {descProducts}/>
+            <DescProduct descProducts = {descProducts!}/>
             <RelatedProjects />
         </WrapperPageProduct>
     )

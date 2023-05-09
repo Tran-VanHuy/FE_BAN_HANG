@@ -1,11 +1,13 @@
 import { ContentDescProducts, DescProductContainer, TitleDescContainer } from "./styled"
 import parserHtml from "react-html-parser"
-
-export const DescProduct = (props: any) => {
-
+type ITypeProps = {
+    descProducts: string
+}
+export const DescProduct = (props: ITypeProps) => {
+    const {descProducts} = props;
     return (
         <DescProductContainer>
-            {props?.descProducts ? 
+            {descProducts ? 
             <>
              <TitleDescContainer>Description</TitleDescContainer>
             <ContentDescProducts>

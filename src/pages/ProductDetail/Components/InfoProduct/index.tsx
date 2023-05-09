@@ -12,11 +12,10 @@ type ITypeDefaultImage = {
     name?: string;
 }
 
-type ITypeDescProducts = {
-
-    content: string
+type ITypeProps = {
+    setDescProducts: any
 }
-export const InfoProducts = (props : any) => {
+export const InfoProducts = (props : ITypeProps) => {
 
     const {slug} = useParams();
 
@@ -99,7 +98,7 @@ export const InfoProducts = (props : any) => {
                     </ItemContentProduct>
                     <ItemContentProduct>
                         <strong>Product Code: </strong>
-                        <span>Product 16</span>
+                        <span>{dataProductDetail?.id}</span>
                     </ItemContentProduct>
                     <ItemContentProduct>
                         <strong>Reward Points: </strong>
